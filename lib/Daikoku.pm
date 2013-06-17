@@ -15,11 +15,10 @@ path '/' => sub {
     };
 };
 
-use Data::Dumper;
-
 pocketio 'mes' => sub {
     my ($socket, $mes) = @_;
-    $socket->emit('server_mes', $mes);
+    $socket->broadcast->emit('server_mes', $mes);
+    $socket->emit('server_mes', $mes)
 };
 
 1;
